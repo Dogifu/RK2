@@ -7,7 +7,7 @@ add_subdirectory("${CMAKE_CURRENT_SOURCE_DIR}/third-party/gtest" "gtest")
 
 add_library(sort STATIC sort.cpp)
 
-add_executable(test ${CMAKE_CURRENT_SOURCE_DIR}/tests/MainTest.cpp)
+add_executable(test ${CMAKE_CURRENT_SOURCE_DIR}/tests/test1.cpp)
 
 if (COVERAGE)
     target_compile_options(test PRIVATE --coverage)
