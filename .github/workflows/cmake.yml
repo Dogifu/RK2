@@ -7,6 +7,7 @@ on:
     branches: [ main ]
 
 env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
 
 jobs:
@@ -28,13 +29,14 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/_build
       # Execute tests defined by the CMake configuration.  
+      # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: |
         ./test
         lcov -c -t "sort" -o lcov.info -d .
         lcov --remove lcov.info '/home/runner/work/RK2/RK2/third-party/gtest/*' -o lcov.info
         lcov --remove lcov.info '/usr/include/*' -o lcov.info
         
-    - name: coveralls
+    - name: Coveralls
       uses: coverallsapp/github-action@master
       with:
           github-token: ${{ secrets.github_token }}
